@@ -28,7 +28,7 @@ export default defineConfig({
   
   use: { 
    
-    baseURL: process.env.BASE_URL || 'https://example.com', 
+    baseURL: process.env.BASE_URL,  
   
    
     screenshot: 'only-on-failure', 
