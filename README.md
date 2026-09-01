@@ -1,4 +1,3 @@
-
 # Playwright UI Automation Framework
 
 A clean and simple UI test automation framework built with Playwright, TypeScript, and the Page Object Model (POM) pattern.
@@ -27,17 +26,17 @@ playwright-automatedTest-e2e/
 │   ├── CartPage.ts
 │   └── CheckoutPage.ts
 │
-├── locators/                # Locator definitions
+├── locators/                 # Locator definitions
 │   ├── product.locators.ts
 │   ├── cart.locators.ts
-│   └── checkout.locators.ts
-|   └── home.locators.ts     
-│    
-├── test-data/               # Test data
+│   ├── checkout.locators.ts
+│   └── home.locators.ts
+│
+├── test-data/                # Test data
 ├── playwright.config.ts
 ├── package.json
 ├── tsconfig.json
-├── .env
+├── .env.example
 └── .gitignore
 ```
 
@@ -54,7 +53,11 @@ npx playwright install
 
 ## Environment Setup
 
-Create a `.env` file based on our `.env` and configure the required environment variables:
+Copy the example environment file and configure the required variables locally:
+
+```bash
+cp .env.example .env
+```
 
 ```text
 BASE_URL=https://shopware6-demo.development-s25.com
@@ -62,7 +65,7 @@ USERNAME=
 PASSWORD=
 ```
 
-The `.env` file contains environment-specific configuration and should not be committed to the repository.
+The `.env` file is personal and contains environment-specific configuration — it is not committed to the repository. Only `.env.example` is version-controlled, so that anyone cloning the project knows which variables are required.
 
 ## Playwright Setup
 
@@ -98,9 +101,11 @@ The framework uses stable and maintainable locators where possible.
 The preferred locator strategy is:
 
 1. ID selectors when available
-2. If no ID is available, we use stable classes, links, attributes, or other reliable selectors
+2. If no ID is available, stable classes, links, attributes, or other reliable selectors
 3. Playwright semantic locators when appropriate
 4. XPath only when necessary
+
+Since the target application does not expose `data-test-id` attributes, stable CSS classes and semantic attributes (e.g. `href`, `title`) were used as the next-best alternative.
 
 Example:
 
@@ -185,10 +190,20 @@ Each bug was documented with:
 * Bug ID
 * Title
 * Environment
+* Steps to reproduce
 * Expected Result
 * Actual Result
-* Severity
+* Severity (with justification)
 * Supporting screenshots
+
+## What I Would Improve With More Time
+
+* Add explicit waits for dynamic UI elements (such as the off-canvas cart) instead of relying solely on default action timeouts, to make the test more resilient to animation and AJAX timing.
+* Extend automation coverage to additional positive test cases from the test plan (e.g. invoice checkout, multi-product checkout), not only the single required guest checkout flow.
+* Add automated regression checks for at least one or two of the documented bugs, so future fixes can be verified automatically.
+* Run the test suite across multiple browsers (Firefox, WebKit) instead of Microsoft Edge only, to catch cross-browser issues earlier.
+* Request or propose `data-test-id` attributes on key storefront elements, to make locators fully independent of styling/markup changes.
+* Integrate the test suite into a CI pipeline (e.g. GitHub Actions) to run automatically on every push or pull request.
 
 ## Status
 
