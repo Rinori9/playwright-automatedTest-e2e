@@ -11,23 +11,23 @@ export class CheckoutPage {
 
         await this.page
             .locator(checkoutLocators.firstName)
-            .fill('John');
+            .fill('Rinor');
 
         await this.page
             .locator(checkoutLocators.lastName)
-            .fill('Doe');
+            .fill('Halitaj');
 
         await this.page
             .locator(checkoutLocators.email)
-            .fill('john.doe@example.com');
+            .fill('rinor05@gmail.com');
 
         await this.page
             .locator(checkoutLocators.street)
-            .fill('Main Street 10');
+            .fill('Sahit Halitaj 35');
 
         await this.page
             .locator(checkoutLocators.zipcode)
-            .fill('10115');
+            .fill('24000');
 
         await this.page
             .locator(checkoutLocators.city)
