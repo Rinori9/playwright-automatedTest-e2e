@@ -4,7 +4,7 @@ import { ProductPage } from '../pages/ProductPage';
 import { CartPage } from '../pages/CartPage';
 import { CheckoutPage } from '../pages/CheckoutPage';
 
-test('Guest checkout with Cash on Delivery', async ({ page }) => {
+test('Guest checkout', async ({ page }) => {
 
     const homePage = new HomePage(page);
     const productPage = new ProductPage(page);
